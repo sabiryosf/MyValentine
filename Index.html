@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you be my Valentine?</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffd1dc, #ffc0cb);
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        width: 320px;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 80px;
+    }
+
+    button {
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: absolute;
+    }
+
+    #yesBtn {
+        background-color: #ff2e63;
+        color: white;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #noBtn {
+        background-color: #eee;
+        color: black;
+        left: 10px;
+        top: 40px;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .result {
+        margin-top: 20px;
+        display: none;
+    }
+
+    .result img {
+        width: 100%;
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <div class="result" id="result">
+        <h2>YAY! 🎉</h2>
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="celebration">
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const result = document.getElementById("result");
+
+let noSize = 1;
+
+// Move the NO button randomly
+noBtn.addEventListener("mouseover", () => {
+    const card = document.querySelector(".card");
+    const maxX = card.clientWidth - noBtn.clientWidth;
+    const maxY = card.clientHeight - noBtn.clientHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+
+    // Shrink it slightly each time
+    noSize *= 0.9;
+    noBtn.style.transform = `scale(${noSize})`;
+});
+
+// YES button click
+yesBtn.addEventListener("click", () => {
+    document.querySelector(".buttons").style.display = "none";
+    result.style.display = "block";
+});
+</script>
+
+</body>
+</html>
